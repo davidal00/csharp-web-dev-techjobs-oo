@@ -28,7 +28,7 @@ namespace TechJobsOO
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Value);
+            return HashCode.Combine(Id);
         }
 
         public override string ToString()
