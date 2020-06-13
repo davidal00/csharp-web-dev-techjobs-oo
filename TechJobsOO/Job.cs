@@ -9,7 +9,7 @@ namespace TechJobsOO
         private static int nextId = 1;
 
         public string Name { get; set; }
-        public string Value { get; set; }
+        //public string Value { get; set; }
         public Employer EmployerName { get; set; }
         public Location EmployerLocation { get; set; }
         public PositionType JobType { get; set; }
@@ -23,10 +23,9 @@ namespace TechJobsOO
             nextId++;
         }
 
-        public Job(string name, string value, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
+        public Job(string name, Employer employerName, Location employerLocation, PositionType jobType, CoreCompetency jobCoreCompetency) : this()
         {
             Name = name;
-            Value = value;
             EmployerName = employerName;
             EmployerLocation = employerLocation;
             JobType = jobType;
@@ -44,6 +43,39 @@ namespace TechJobsOO
         public override int GetHashCode()
         {
             return HashCode.Combine(Id);
+        }
+
+        public override string ToString()
+        {
+            if(Name == null && EmployerName == null && EmployerLocation == null & JobType == null && JobCoreCompetency == null)
+            {
+                return $"ID: {Id}\nOOPS! This job does not seem to exist.";
+            }
+
+            if(Name == "")
+            {
+                Name = "Data not available";
+            }
+            if(EmployerName.Value == "" || EmployerName.Value == null)
+            {
+                EmployerName.Value = "Data not available";
+            }
+            if (EmployerLocation.Value == "" || EmployerLocation.Value == null)
+            {
+                EmployerLocation.Value = "Data not available";
+            }
+            if (JobType.Value == "" || JobType.Value == null)
+            {
+                JobType.Value = "Data not available";
+            }
+            if (JobCoreCompetency.Value == "" || JobCoreCompetency.Value == null)
+            {
+                JobCoreCompetency.Value = "Data not available";
+            }
+
+
+            string output = $"\nID: {Id}\nName: {Name}\nEmployer: {EmployerName}\nLocation: {EmployerLocation}\nPosition Type: {JobType}\nCore Competency: {JobCoreCompetency}\n";
+            return output;
         }
     }
 }
